@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class LockedMeOperations 
 {
 	//
-	private static final String FILE_HANDLING_DIRECTORY = "D:\\BharatSimpliLearn\\Phase1Assessment\\Source Code\\LockedMe\\src\\root";
+	static final String FILE_HANDLING_DIRECTORY = "D:\\BharatSimpliLearn\\Phase1Assessment\\Source Code\\LockedMe\\src\\root";
 	
 	public static List<String> retrieveFileNames()
 	{

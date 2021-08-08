@@ -21,7 +21,7 @@ public class LockedMeApplication
 		else
 			System.out.println("File not added");
 		
-		*/
+		
 		
 		//Delete user specified file
 		boolean isDeleted = LockedMeOperations.deleteFile();
@@ -29,7 +29,9 @@ public class LockedMeApplication
 			System.out.println("File is succesfully deleted!");
 		else
 			System.out.println("File does not exist in the path to delete!");
-
+		*/
+		//Display Main Menu options
+		LockedMeMenuOptions.mainMenuOptions();
 	}
 	
 
