@@ -25,11 +25,11 @@ public class LockedMeOperations
 		return fileNames;
 	}
 	
-	public static boolean addFiles() 
+	public static boolean addFile() 
 	{
 		
 		//Getting the new File name
-		System.out.println("Give the name of the File: ");
+		System.out.println("Enter the name of the File: ");
 		Scanner sc = new Scanner(System.in);
 		String newFileName = sc.nextLine();
 		
@@ -73,4 +73,21 @@ public class LockedMeOperations
 		}
 	}
 	
+	public static boolean deleteFile()
+	{
+		//Get user specified file
+		System.out.println("Enter name of the File to delete: ");
+		Scanner sc = new Scanner(System.in);
+		String fileNameToBeDeleted = sc.nextLine();
+		sc.close();
+		
+		File fileToDelete = new File(FILE_HANDLING_DIRECTORY + "\\" + fileNameToBeDeleted);
+		
+		//Delete user specified file
+		if(fileToDelete.delete())
+			return true;
+		else
+			return false;
+		
+	}
 }

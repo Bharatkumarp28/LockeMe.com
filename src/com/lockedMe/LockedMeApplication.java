@@ -12,16 +12,24 @@ public class LockedMeApplication
 		List<String> filesInDirectory = LockedMeOperations.retrieveFileNames();
 		for(String file : filesInDirectory)
 			System.out.println(file);
-		*/
+		
 		
 		//Addition of files and data
-		boolean isAdded = LockedMeOperations.addFiles();
+		boolean isAdded = LockedMeOperations.addFile();
 		if(isAdded)
 			System.out.println("File added succesfully!");
 		else
 			System.out.println("File not added");
-
 		
+		*/
+		
+		//Delete user specified file
+		boolean isDeleted = LockedMeOperations.deleteFile();
+		if(isDeleted)
+			System.out.println("File is succesfully deleted!");
+		else
+			System.out.println("File does not exist in the path to delete!");
+
 	}
 	
 
