@@ -42,6 +42,7 @@ public class LockedMeMenuOptions
 						break;
 					case 2:
 						System.out.println("Entered into file options");
+						fileOperations();
 						break;
 					case 3:
 						System.out.println("Exit the application");
@@ -65,5 +66,53 @@ public class LockedMeMenuOptions
 		List<String> filesInDirectory = LockedMeOperations.retrieveFileNames();
 		for(String file : filesInDirectory)
 			System.out.println("- "+ file);
+	}
+	
+	public static void fileOperations() 
+	{
+		//File Options Menu
+		System.out.println("*****************************************************");
+		System.out.println("\t\tFile Opertions Menu");
+		System.out.println("*****************************************************");
+		System.out.println("1. Add a user specified file to the application");
+		System.out.println("2. Delete a user specified file from the application");
+		System.out.println("3. Search a user specified file from the application");
+		System.out.println("4. Go to Main Menu");
+		System.out.println("5. Close the application");
+		
+		boolean fMenuFlag;
+		int userInputOption;
+		Scanner sc = new Scanner(System.in);
+		do
+		{
+			fMenuFlag = false;
+			System.out.println("*****************************************************");
+			System.out.println("Enter you choice: ");
+			userInputOption = Integer.parseInt(sc.nextLine());			
+			
+			switch(userInputOption)
+			{
+			case 1:
+				System.out.println("Add File");
+				break;
+			case 2:
+				System.out.println("delete file");
+				break;
+			case 3:
+				System.out.println("search file");
+				break;
+			case 4:
+				System.out.println("main menu");
+				mainMenuOptions();
+				break;
+			case 5:
+				System.out.println("Exit application");
+				break;
+			default:
+				System.out.println("Enter a valid input, Try again!");
+				fMenuFlag = true;
+			}
+			
+		}while(fMenuFlag);
 	}
 }
