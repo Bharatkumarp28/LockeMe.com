@@ -30,22 +30,27 @@ public class LockedMeMenuOptions
 			{
 				//User input option
 				System.out.println("*****************************************************");
-				System.out.println("Enter you choice: ");
+				System.out.println("Enter your choice: ");
 				mMenuvalue = Integer.parseInt(sc.nextLine());
 				
 				//Switch case to enter into logic of menu options
 				switch(mMenuvalue) 
 				{
 					case 1:
-						System.out.println("Files retriev from the folder path: \n"+ LockedMeOperations.FILE_HANDLING_DIRECTORY + " are:");
+						System.out.println("Files retriev from the folder path: \n"
+											+ LockedMeOperations.FILE_HANDLING_DIRECTORY + " are:");
+						
+						//Calling getFiles method to fetch all files in ascending order
 						getFiles();
 						break;
 					case 2:
-						System.out.println("Entered into file options");
+						//Calling file operation method to entered into file options menu
 						fileOperations();
 						break;
 					case 3:
-						System.out.println("Exit the application");
+						System.out.println("Thank you, closing the Application");
+						sc.close();
+						System.exit(0);
 						break;
 					default:
 						System.out.println("invalid option, Try again!");
@@ -53,7 +58,8 @@ public class LockedMeMenuOptions
 				}
 			}
 			catch(Exception ex) {
-				System.out.println("Error: Enter a numeric value from the given Menu!");
+				System.out.println("\tError: You must enter a numeric"
+									+ " value from the given Menu\n\t\t***Closing the Application!***");
 				sc.close();
 			}
 				
@@ -67,6 +73,27 @@ public class LockedMeMenuOptions
 		for(String file : filesInDirectory)
 			System.out.println("- "+ file);
 	}
+	
+	public static void addFile()
+	{
+		//Addition of files and data
+		boolean isAdded = LockedMeOperations.addFile();
+		if(isAdded)
+			System.out.println("File added successfully!");
+		else
+			System.out.println("File not added");
+	}
+	
+	public static void removeFile()
+	{
+		//Delete user specified file
+		boolean isDeleted = LockedMeOperations.deleteFile();
+		if(isDeleted)
+			System.out.println("File is succesfully deleted!");
+		else
+			System.out.println("File does not exist in the path to delete!");
+	}
+	
 	
 	public static void fileOperations() 
 	{
@@ -86,31 +113,50 @@ public class LockedMeMenuOptions
 		do
 		{
 			fMenuFlag = false;
-			System.out.println("*****************************************************");
-			System.out.println("Enter you choice: ");
-			userInputOption = Integer.parseInt(sc.nextLine());			
 			
-			switch(userInputOption)
+			//Try-catch to handle exceptions
+			try 
 			{
-			case 1:
-				System.out.println("Add File");
-				break;
-			case 2:
-				System.out.println("delete file");
-				break;
-			case 3:
-				System.out.println("search file");
-				break;
-			case 4:
-				System.out.println("main menu");
-				mainMenuOptions();
-				break;
-			case 5:
-				System.out.println("Exit application");
-				break;
-			default:
-				System.out.println("Enter a valid input, Try again!");
-				fMenuFlag = true;
+				System.out.println("*****************************************************");
+				System.out.println("Enter you choice: ");
+				userInputOption = Integer.parseInt(sc.nextLine());			
+				
+				switch(userInputOption)
+				{
+				case 1:
+					System.out.println("Add File");
+					addFile();
+					break;
+					
+				case 2:
+					System.out.println("delete file");
+					removeFile();
+					break;
+					
+				case 3:
+					System.out.println("search file");
+					break;
+					
+				case 4:
+					System.out.println("main menu");
+					mainMenuOptions();
+					break;
+					
+				case 5:
+					System.out.println("Thank you, closing the Application");
+					sc.close();
+					System.exit(0);
+					break;
+					
+				default:
+					System.out.println("Enter a valid input, Try again!");
+					fMenuFlag = true;
+				}
+			}
+			catch(Exception ex) 
+			{
+				System.out.println("Error: Enter a numeric value from the given Menu!");
+				sc.close();
 			}
 			
 		}while(fMenuFlag);

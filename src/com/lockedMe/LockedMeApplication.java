@@ -17,7 +17,7 @@ public class LockedMeApplication
 		//Addition of files and data
 		boolean isAdded = LockedMeOperations.addFile();
 		if(isAdded)
-			System.out.println("File added succesfully!");
+			System.out.println("File added successfully!");
 		else
 			System.out.println("File not added");
 		
