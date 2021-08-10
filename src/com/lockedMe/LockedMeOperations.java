@@ -11,6 +11,7 @@ public class LockedMeOperations
 {
 	//
 	static final String FILE_HANDLING_DIRECTORY = "D:\\BharatSimpliLearn\\Phase1Assessment\\Source Code\\LockedMe\\src\\root";
+	static Scanner sc = new Scanner(System.in);
 	
 	public static List<String> retrieveFileNames()
 	{
@@ -25,29 +26,17 @@ public class LockedMeOperations
 		return fileNames;
 	}
 	
-	public static boolean addFile() 
+	public static boolean addFile(String newFileName, int countOfLines, List<String> dataIntoFile) 
 	{
 		
-		//Getting the new File name
-		System.out.println("Enter the name of the File: ");
-		Scanner sc = new Scanner(System.in);
-		String newFileName = sc.nextLine();
-		
-		
-		//
-		System.out.println("How many line you want to write into file: ");
-		int countOfLines = Integer.parseInt(sc.nextLine());
 		FileWriter fileToWrite = null;
 		
 		try
 		{
 			fileToWrite = new FileWriter(FILE_HANDLING_DIRECTORY +"\\" + newFileName);
-			for(int i = 1; i <= countOfLines; i++) 
-			{
-				System.out.println("Enter the text for line " + i + ":");
-				String dataIntoFile = sc.nextLine() + "\n";
-				fileToWrite.write(dataIntoFile);
-			}
+			
+			for(String dataParts: dataIntoFile)
+				fileToWrite.write(dataParts);
 			
 			return true;
 			
@@ -63,7 +52,7 @@ public class LockedMeOperations
 				{
 					if(fileToWrite != null)
 						fileToWrite.close();
-					sc.close();
+					//sc.close();
 				} 
 				catch (IOException e) 
 				{
@@ -73,14 +62,8 @@ public class LockedMeOperations
 		}
 	}
 	
-	public static boolean deleteFile()
+	public static boolean deleteFile(String fileNameToBeDeleted)
 	{
-		//Get user specified file
-		System.out.println("Enter name of the File to delete: ");
-		Scanner sc = new Scanner(System.in);
-		String fileNameToBeDeleted = sc.nextLine();
-		sc.close();
-		
 		File fileToDelete = new File(FILE_HANDLING_DIRECTORY + "\\" + fileNameToBeDeleted);
 		
 		//Delete user specified file
@@ -89,5 +72,15 @@ public class LockedMeOperations
 		else
 			return false;
 		
+	}
+	
+	public static boolean searchFile(String fileNameToBeSearched)
+	{		
+		File locFiles = new File(FILE_HANDLING_DIRECTORY + "\\" + fileNameToBeSearched);
+		
+		if(locFiles.exists())
+			return true;
+		else
+			return false;
 	}
 }

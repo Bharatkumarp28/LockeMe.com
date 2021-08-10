@@ -26,10 +26,21 @@ public class LockedMeApplication
 		//Delete user specified file
 		boolean isDeleted = LockedMeOperations.deleteFile();
 		if(isDeleted)
-			System.out.println("File is succesfully deleted!");
+			System.out.println("File is successfully deleted!");
 		else
 			System.out.println("File does not exist in the path to delete!");
+		
+		//Display Main Menu options
+		//LockedMeMenuOptions.mainMenuOptions();
+		
+		//Search user specified file
+		boolean isFound = LockedMeOperations.searchFile();
+		if(isFound)
+			System.out.println("File found in the location");
+		else
+			System.out.println("File not found!");
 		*/
+		
 		//Display Main Menu options
 		LockedMeMenuOptions.mainMenuOptions();
 	}
