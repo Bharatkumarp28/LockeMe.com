@@ -24,8 +24,8 @@ public class LockedMeMenuOptions
 			try 
 			{
 				//Main Menu Options
-				System.out.println("*****************************************************");
-				System.out.println("\t\tMain Menu Options");
+				//System.out.println("*****************************************************");
+				System.out.println("\n   @Main Menu Options");
 				System.out.println("*****************************************************");
 				System.out.println("1. Retrieving the file names");
 				System.out.println("2. Display options for file operations");
@@ -160,7 +160,7 @@ public class LockedMeMenuOptions
 									+ "1. Menu Options \n"
 									+ "2. Exit Application\n"
 									+ "Enter your choice: ");
-			try 
+			try
 			{
 				inputOption = Integer.parseInt(sc.nextLine());
 			}
@@ -194,8 +194,8 @@ public class LockedMeMenuOptions
 			try 
 			{
 				//File Options Menu
-				System.out.println("*****************************************************");
-				System.out.println("\t\tFile Opertions Menu");
+				//System.out.println("*****************************************************");
+				System.out.println("\n   @File Opertions Menu");
 				System.out.println("*****************************************************");
 				System.out.println("1. Add a user specified file to the application");
 				System.out.println("2. Delete a user specified file from the application");
@@ -209,7 +209,7 @@ public class LockedMeMenuOptions
 				switch(userInputOption)
 				{
 				case 1:
-					System.out.println("Add File");
+					//System.out.println("Add File");
 					addFile();
 					gotInp = afterFileOperations(OPTIONS_LABLE);
 					if(gotInp == 1)
@@ -219,7 +219,7 @@ public class LockedMeMenuOptions
 					break;
 					
 				case 2:
-					System.out.println("delete file");
+					//System.out.println("delete file");
 					removeFile();
 					gotInp = afterFileOperations(OPTIONS_LABLE);
 					if(gotInp == 1)
@@ -229,7 +229,7 @@ public class LockedMeMenuOptions
 					break;
 					
 				case 3:
-					System.out.println("search file");
+					//System.out.println("search file");
 					searchForFile();
 					gotInp = afterFileOperations(OPTIONS_LABLE);
 					if(gotInp == 1)
