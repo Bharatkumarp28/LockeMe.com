@@ -1,6 +1,7 @@
 package com.lockedMe;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,7 +41,7 @@ public class LockedMeMenuOptions
 				switch(mMenuvalue) 
 				{
 					case 1:
-						System.out.println("Files retriev from the folder path: \n"
+						System.out.println("Files retrieve from the folder path: \n"
 											+ LockedMeOperations.FILE_HANDLING_DIRECTORY + " are:");
 						
 						//Calling getFiles method to fetch all files in ascending order
@@ -49,16 +50,14 @@ public class LockedMeMenuOptions
 						if(gotInp == 1)
 							menuFlag = true;
 						else if(gotInp == 2)
-							mMenuvalue = 3;
+							exitApp();
 						break;
 					case 2:
 						//Calling file operation method to entered into file options menu
 						fileOperations();
 						break;
 					case 3:
-						System.out.println("Thank you, closing the Application");
-						sc.close();
-						System.exit(0);
+						exitApp();
 						break;
 					default:
 						System.out.println("invalid option, Try again!");
@@ -79,10 +78,24 @@ public class LockedMeMenuOptions
 		}while(menuFlag);
 	}
 	
+	public static void exitApp()
+	{
+		System.out.println("Thank you, closing the Application");
+		sc.close();
+		System.exit(0);
+	}
+	
 	public static void getFiles() 
 	{
-		//Retrieving the file names in an ascending order
+		//Get file names in a list
 		List<String> filesInDirectory = LockedMeOperations.retrieveFileNames();
+		
+		//Sorting file names using Collections class
+		Collections.sort(filesInDirectory);
+		
+		//logic to retrieve files and display Null if no files
+		if(filesInDirectory.size() == 0)
+			System.out.println("No files in the folder!");
 		for(String file : filesInDirectory)
 			System.out.println("- "+ file);
 	}
@@ -147,21 +160,24 @@ public class LockedMeMenuOptions
 	public static int afterFileOperations(char gotLable)
 	{
 		int inputOption = 0;
-		boolean flag = false;
+		boolean flag;
+		
 		do
 		{
-			if(gotLable == 'F')
-				System.out.println("\nDo you want \n"
-									+ "1. File Opertions Menu \n"
-									+ "2. Exit Application\n"
-									+ "Enter your choice: ");
-			else if(gotLable == 'M')
-				System.out.println("\nDo you want \n"
-									+ "1. Menu Options \n"
-									+ "2. Exit Application\n"
-									+ "Enter your choice: ");
+			flag = false;
 			try
 			{
+				if(gotLable == 'F')
+					System.out.println("\nDo you want \n"
+										+ "1. File Operations Menu \n"
+										+ "2. Exit Application\n"
+										+ "Enter your choice: ");
+				else if(gotLable == 'M')
+					System.out.println("\nDo you want \n"
+										+ "1. Menu Options \n"
+										+ "2. Exit Application\n"
+										+ "Enter your choice: ");
+			
 				inputOption = Integer.parseInt(sc.nextLine());
 			}
 			catch(NumberFormatException nfex)
@@ -215,7 +231,7 @@ public class LockedMeMenuOptions
 					if(gotInp == 1)
 						fMenuFlag = true;
 					else if(gotInp == 2)
-						userInputOption = 5;
+						exitApp();
 					break;
 					
 				case 2:
@@ -225,7 +241,7 @@ public class LockedMeMenuOptions
 					if(gotInp == 1)
 						fMenuFlag = true;
 					else if(gotInp == 2)
-						userInputOption = 5;
+						exitApp();
 					break;
 					
 				case 3:
@@ -235,7 +251,7 @@ public class LockedMeMenuOptions
 					if(gotInp == 1)
 						fMenuFlag = true;
 					else if(gotInp == 2)
-						userInputOption = 5;
+						exitApp();
 					break;
 					
 				case 4:
@@ -244,9 +260,7 @@ public class LockedMeMenuOptions
 					break;
 					
 				case 5:
-					System.out.println("Thank you, closing the Application");
-					sc.close();
-					System.exit(0);
+					exitApp();
 					break;
 					
 				default:
