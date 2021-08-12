@@ -9,28 +9,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//2. Class which returns all the file operations
 public class LockedMeOperations 
 {
+	//Class variables
 	//Get the current directory path
 	static Path dirFullPath = Paths.get("");
 	
-	//path to create a folder
+	//path to create a root directory
 	static final String FILE_HANDLING_DIRECTORY = (dirFullPath.toAbsolutePath().toString()
 													+ "\\root");
 	
 	//Scanner
 	static Scanner sc = new Scanner(System.in);
 	
+	/**
+	 * method to create directory
+	 */
 	public static void makeDirectory()
 	{
+		//Initializing file object
 		File createDirectory = new File(FILE_HANDLING_DIRECTORY);
+		
+		//Exceptional handling
 		try
 		{
+			//Make directory logic
 			if(!createDirectory.exists()) 
 			{
 				createDirectory.mkdir();
 				System.out.println("Created root folder for Application Operations at: \n"
-				+ "***" + FILE_HANDLING_DIRECTORY+ "***");
+				+ "***" + FILE_HANDLING_DIRECTORY+ "***\n");
 			}	
 		}
 		catch(Exception ex)
@@ -40,14 +49,16 @@ public class LockedMeOperations
 		}
 	}
 	
+	/**
+	 * method return list of files in the directory
+	 * @return List<String>
+	 */
 	public static List<String> retrieveFileNames()
 	{
-		//Initializing List and File
+		//Initializing List to store filenames
 		List<String> fileNames = new ArrayList<String>();
 		
-		//Create a root directory if not exist
-		makeDirectory();
-		
+		//Initializing file with directory path
 		File locFiles = new File(FILE_HANDLING_DIRECTORY);
 		
 		//Fetch filename and add to List
@@ -57,16 +68,24 @@ public class LockedMeOperations
 		return fileNames;
 	}
 	
-	public static boolean addFile(String newFileName, int countOfLines, List<String> dataIntoFile) 
+
+	/**
+	 * method to return files are added into the directory or not
+	 * @param newFileName
+	 * @param countOfLines
+	 * @param dataIntoFile
+	 * @return true(if added)
+	 */
+	public static boolean addFile(String newFileName, int countOfLines, 
+								  List<String> dataIntoFile) 
 	{
-		
+		//Declaring FileWriter
 		FileWriter fileToWrite = null;
 		
+		//Exceptional handling
 		try
-		{
-			//Create a root directory if not exist
-			makeDirectory();
-			
+		{			
+			//Initialize location to add file
 			fileToWrite = new FileWriter(FILE_HANDLING_DIRECTORY +"\\" + newFileName);
 			
 			for(String dataParts: dataIntoFile)
@@ -86,7 +105,6 @@ public class LockedMeOperations
 				{
 					if(fileToWrite != null)
 						fileToWrite.close();
-					//sc.close();
 				} 
 				catch (IOException e) 
 				{
@@ -96,12 +114,17 @@ public class LockedMeOperations
 		}
 	}
 	
+
+	/**
+	 * method to return if file is deleted from the directory or not
+	 * @param fileNameToBeDeleted
+	 * @return true(if deleted)
+	 */
 	public static boolean deleteFile(String fileNameToBeDeleted)
 	{
-		//Create a root directory if not exist
-		makeDirectory();
-		
-		File fileToDelete = new File(FILE_HANDLING_DIRECTORY + "\\" + fileNameToBeDeleted);
+		//Initialize location to delete file
+		File fileToDelete = new File(FILE_HANDLING_DIRECTORY 
+				                     + "\\" + fileNameToBeDeleted);
 		
 		//Delete user specified file
 		if(fileToDelete.delete())
@@ -111,13 +134,18 @@ public class LockedMeOperations
 		
 	}
 	
+
+	/**
+	 * method return file found in a directory or not
+	 * @param fileNameToBeSearched
+	 * @return true(if file found)
+	 */
 	public static boolean searchFile(String fileNameToBeSearched)
 	{		
-		//Create a root directory if not exist
-		makeDirectory();
-				
+		//Initialize location to search file
 		File locFiles = new File(FILE_HANDLING_DIRECTORY + "\\" + fileNameToBeSearched);
 		
+		//check if file exist in the location or not
 		if(locFiles.exists())
 			return true;
 		else
